@@ -96,6 +96,7 @@ function stopRecordHours()
     stopBtn.style.display = "none";
 
     updateDatabase();
+    location.reload();
 }
 
 function calculateWorkHours(startTime, endTime)
@@ -146,6 +147,9 @@ function displayPastWorkHours() {
         li.appendChild(details);
         pastWorkHoursDisplay.appendChild(li);
     }
+
+    const elapsedTimeText = document.getElementById("elapsedTime");
+    elapsedTimeText.classList.remove("elapsedTimeActive");
 }
 
 function updateDatabase()
@@ -206,6 +210,7 @@ function saveInfo()
     localStorage.setItem('info', JSON.stringify(info));
 
     toggleSettingsMenu();
+    location.reload();
 }
 
 function displaySummery()
