@@ -252,3 +252,52 @@ function resetData()
         location.reload();
     }
 }
+
+function toggleAddHoursMenu()
+{
+    const addHoursMenu = document.getElementById("addHoursMenu");
+
+    if(addHoursMenu.style.display == "none" || addHoursMenu.style.display == "")
+    {
+        addHoursMenu.style.display = "block";
+    }
+    else
+    {
+        addHoursMenu.style.display = "none";
+    }
+}
+
+function addHours()
+{
+    const date = document.getElementById("date").value;
+    const startTime = document.getElementById("startTime").value;
+    const endTime = document.getElementById("endTime").value;
+
+    const dateVar = new Date(date);
+
+    const start = {hours: parseInt(startTime.split(":")[0]), minutes: parseInt(startTime.split(":")[1])};
+    const end = {hours: parseInt(endTime.split(":")[0]), minutes: parseInt(endTime.split(":")[1])};
+
+    const CurrentDate = new Date(dateVar.getFullYear(), dateVar.getMonth(), dateVar.getDate());
+
+    timeSchedule.push({
+        date: CurrentDate,
+        start: start,
+        end: end
+    });
+
+    updateDatabase();
+    location.reload();
+}
+
+function exportData()
+{
+    const data = JSON.stringify(timeSchedule);
+    const blob = new Blob([data], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "workHours.json";
+    a.click();
+}
