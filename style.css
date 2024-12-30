@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap');
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    font-family: "Heebo", serif;
+    position: absolute;
+    top: 0;
+}
+
+.title {
+    text-align: center;
+    
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    
+    width: 100%;
+    
+}
+
+.startStopBtn {
+    background: radial-gradient(#2e61d8, #013f8a);
+    color: white;
+    
+    width: 250px;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 300%;
+
+    aspect-ratio: 1;
+    cursor: pointer;
+
+    border: none;
+    border-radius: 50%;
+
+    padding: 0;
+    
+    position: absolute;
+    bottom: 20px;
+}
+
+.pastWorkHoursDisplay {
+    font-size: 150%;
+    list-style-type: none;
+}
+
+.elapsedTime {
+    background-color: #585858;
+    color: white;
+
+    padding: 20px 50px;
+    margin: 0;
+
+    font-weight: bold;
+    border-radius: 50px;
+}
+
+.elapsedTimeActive {
+    background-color: #013f8a;
+    background-image: -webkit-linear-gradient(135deg, #ffffff20 25%, transparent 25%, transparent 50%, #ffffff20 50%, #ffffff20 75%, transparent 75%, transparent);
+    background-image: linear-gradient(-45deg, #ffffff20 25%, transparent 25%, transparent 50%, #ffffff20 50%, #ffffff20 75%, transparent 75%, transparent);
+    background-size: 35px 35px;
+
+    animation: ProgressAnimation 2s linear infinite;
+}
+
+@keyframes ProgressAnimation { 
+    0% {background-position:0 0}
+    100% {background-position:35px 35px}
+}
+
+.settingsBtn {
+    background: radial-gradient(#2e61d8, #013f8a);
+    color: white;
+
+    width: 50px;
+    height: 50px;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 200%;
+    font-weight: bold;
+
+    aspect-ratio: 1;
+    cursor: pointer;
+
+    border: none;
+    border-radius: 50%;
+
+    padding: 0;
+    
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.settingsMenu {
+    z-index: 10;
+    position: absolute;
+    width: 250px;
+    height: fit-content;
+
+    padding: 10px 10px;
+
+    background-color: #ffffff;
+    border-radius: 15px;
+
+    box-shadow: 0 0 10px 0 #0000001a;
+
+    display: none;
+}
+
+.settingsMenu input {
+    border: solid #e1e1e1 2px;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px 0;
+    
+    font-family: "Heebo", serif;
+    box-shadow: 0 0 10px 0 #0000001a;
+}
+
+.settingsMenu button {
+    background-color: #013f8a;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+    padding: 5px 20px;
+
+    font-family: "Heebo", serif;
+    cursor: pointer;
+}
+
+.settingsMenu p {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-weight: bold;
+}

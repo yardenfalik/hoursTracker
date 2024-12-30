@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="apple-mobile-web-app-title" content="Hours Tracker">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="apple-touch-startup-image" content="rssLogoBlack.png">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#010101">
+    <meta name="description" content="A simple work hours tracker.">
+    
+    <title>Hours Tracker</title>
+</head>
+<body>
+    <h1 class="title">Work Hours Tracker</h1>
+    <h3 id="greeting"></h3>
+
+    <ul id="pastWorkHoursDisplay" class="pastWorkHoursDisplay"></ul>
+
+    <ul id="summery" class="pastWorkHoursDisplay"></ul>
+
+    <div class="controls">
+        <p id="elapsedTime" class="elapsedTime">Work has not started yet.</p>
+        <button class="startStopBtn" id="startBtn" onclick="startRecordHours()">Start Working</button>
+        <button class="startStopBtn" id="stopBtn" onclick="stopRecordHours()" hidden>Stop Working</button>
+        <button class="settingsBtn" onclick="toggleSettingsMenu()">ⓘ</button>
+        <div class="settingsMenu" id="settingsMenu">
+            <p>Info:</p>
+            <input type="text" id="name" placeholder="name" name="name">
+            <input type="text" id="workplace" placeholder="Workplace" name="workplace">
+            <input type="number" id="hourlyRate" placeholder="Hourly Rate" name="hourlyRate">
+            <button class="saveSettingsBtn" onclick="saveInfo()">Save</button>
+            <button onclick="resetData()">reset Data</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
