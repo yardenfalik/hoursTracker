@@ -6,13 +6,24 @@ init();
 function init()
 {
     const greeting = document.getElementById("greeting");
+    const title = document.getElementById("title");
 
     loadTimeSchedule();
-    displayPastWorkHours();
-    checkIfWorkStarted();
-    displaySummery();
+
+    if(info.name == "" || info.workplace == "")
+    {
+        console.log(info.name)
+        toggleSettingsMenu();
+    }
+    else
+    {
+        displayPastWorkHours();
+        checkIfWorkStarted();
+        displaySummery();
     
-    greeting.textContent = `Hi! ${info.name}! | workplace: ${info.workplace}.`;
+        title.textContent = `👋 Hi, ${info.name}!`;
+        greeting.textContent = `workplace: ${info.workplace}.`;
+    }
 }
 
 function checkIfWorkStarted() 
@@ -70,7 +81,7 @@ function startRecordHours()
     stopBtn.style.display = "block";
 
     updateDatabase();
-
+    getRandomQuote();
     setInterval(() => {
         updateRadialIndicator(hours, minutes);
     }, 1000);
@@ -135,6 +146,9 @@ function displayPastWorkHours() {
         const li = document.createElement("li");
         const details = document.createElement("details");
         const summary = document.createElement("summary");
+        const link = document.createElement("a");
+
+        link.onclick = removeEntry(i);
 
         // Populate content
         summary.textContent = formattedDate + " - " + hours.hours + "h" + hours.minutes + "m.";
@@ -144,6 +158,8 @@ function displayPastWorkHours() {
         const hoursText = document.createTextNode(`You\`ve worked for ${hours.hours} hours and ${hours.minutes} minutes. and made ${(((hours.minutes / 60) + hours.hours) * info.hourlyRate).toFixed(2)}₪`);
         details.appendChild(hoursText);
 
+        link.textContent = "✖";
+        li.appendChild(link);
         li.appendChild(details);
         pastWorkHoursDisplay.appendChild(li);
     }
@@ -238,7 +254,7 @@ function displaySummery()
     }
 
     li = document.createElement("li");
-    li.textContent = `You\`ve worked for ${totalHoursWorked.toFixed(2)} hours and made ${totalEarningsMade.toFixed(2)}₪.`;
+    li.textContent = `You've worked for ${totalHoursWorked.toFixed(2)} hours and made ${totalEarningsMade.toFixed(2)}₪.`;
     summery.appendChild(li);
 }
 
@@ -300,4 +316,36 @@ function exportData()
     a.href = url;
     a.download = "workHours.json";
     a.click();
+}
+
+function getRandomQuote() {
+    const quotes = [
+      "The secret of getting ahead is getting started. – Mark Twain",
+      "Do what you can, with what you have, where you are. – Theodore Roosevelt",
+      "Success doesn’t come from what you do occasionally, it comes from what you do consistently. – Marie Forleo",
+      "The only way to do great work is to love what you do. – Steve Jobs",
+      "Your future is created by what you do today, not tomorrow. – Robert Kiyosaki",
+      "Dream big. Start small. But most of all, start. – Simon Sinek",
+      "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
+      "Start where you are. Use what you have. Do what you can. – Arthur Ashe",
+      "Action is the foundational key to all success. – Pablo Picasso",
+      "Small daily improvements over time lead to stunning results. – Robin Sharma"
+    ];
+
+    const motivationalQuotes = document.getElementById("motivationalQuotes");
+    
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    
+    motivationalQuotes.textContent = quotes[randomIndex];
+}
+  
+function removeEntry(index) {
+    return function() {
+        if(confirm("Are you sure you want to remove this entry?"))
+        {
+            timeSchedule.splice(index, 1);
+            updateDatabase();
+            location.reload();
+        }
+    }
 }

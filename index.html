@@ -18,8 +18,9 @@
 </head>
 <body>
     <main>
-        <h1 class="title">Work Hours Tracker</h1>
+        <h1 class="title" id="title"></h1>
         <h3 id="greeting" class="greeting"></h3>
+        <h3 id="motivationalQuotes" class="greeting quotes"></h3>
     
         <ul id="pastWorkHoursDisplay" class="pastWorkHoursDisplay"></ul>
     
@@ -31,6 +32,7 @@
         <button class="addHoursBtn" onclick="toggleAddHoursMenu()">+</button>
         <div class="addHoursMenu" id="addHoursMenu">
             <p>Add Hours Manually:</p>
+            <label for="date">Date:</label>
             <input type="date" id="date" placeholder="date" name="date">
             <label for="startTime">From:</label>
             <input type="time" id="startTime" placeholder="Start Time">
