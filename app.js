@@ -141,7 +141,7 @@ function displayPastWorkHours() {
         details.appendChild(summary);
 
         // Add work hours as text inside details
-        const hoursText = document.createTextNode(`You\`ve worked for ${hours.hours} hours and ${hours.minutes} minutes. and made ${((hours.minutes % 60) + hours.hours) * info.hourlyRate}₪`);
+        const hoursText = document.createTextNode(`You\`ve worked for ${hours.hours} hours and ${hours.minutes} minutes. and made ${(((hours.minutes / 60) + hours.hours) * info.hourlyRate).toFixed(2)}₪`);
         details.appendChild(hoursText);
 
         li.appendChild(details);
@@ -216,8 +216,6 @@ function saveInfo()
 function displaySummery()
 {
     const summery = document.getElementById("summery");
-    var totalHours = "";
-    var totalEarnings = "";
 
     let totalHoursWorked = 0;
     let totalEarningsMade = 0;
@@ -238,12 +236,9 @@ function displaySummery()
 
         totalEarningsMade += ((hours.minutes / 60) + hours.hours) * info.hourlyRate;
     }
-    
-    totalHours = `You\`ve worked for ${totalHoursWorked} hours.`;
-    totalEarnings = `You\`ve made ${totalEarningsMade}₪.`;
 
     li = document.createElement("li");
-    li.textContent = `You\`ve worked for ${totalHoursWorked} hours and made ${totalEarningsMade}₪.`;
+    li.textContent = `You\`ve worked for ${totalHoursWorked.toFixed(2)} hours and made ${totalEarningsMade.toFixed(2)}₪.`;
     summery.appendChild(li);
 }
 
