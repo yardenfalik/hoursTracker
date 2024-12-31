@@ -14,7 +14,7 @@ body {
     position: absolute;
     top: 0;
 
-    background-color: #f2f2f7;
+    background: linear-gradient(45deg, #013e89 0%, #2c60d8 29%, #61efff 100%);
 }
 
 button {
@@ -41,12 +41,15 @@ button {
 }
 
 main {
+    z-index: -10;
     width: 100%;
     height: auto;
     margin: 0;
     padding-bottom: 350px;
     overflow-y: auto;
     position: relative;
+
+    background-color: #f2f2f7;
 }
 
 .colors {
