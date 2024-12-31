@@ -118,6 +118,7 @@ main {
 .pastWorkHoursDisplay li {
     padding: 10px;
     border-bottom: solid #e1e1e1 2px;
+    cursor: pointer;
 }
 
 .pastWorkHoursDisplay li a {
