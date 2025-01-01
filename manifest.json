@@ -1,7 +1,7 @@
 {
     "name" : "Hours Tracker",
     "short_name" : "Hours Tracker",
-    "start_url" : "/",
+    "start_url" : "/hoursTracker",
     "background_color" : "#f2f2f7",
     "theme_color" : "#f2f2f7",
     "display" : "fullscreen",
