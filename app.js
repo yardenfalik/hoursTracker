@@ -155,7 +155,8 @@ function displayPastWorkHours() {
         details.appendChild(summary);
 
         // Add work hours as text inside details
-        const hoursText = document.createTextNode(`You\`ve worked for ${hours.hours} hours and ${hours.minutes} minutes. and made ${(((hours.minutes / 60) + hours.hours) * info.hourlyRate).toFixed(2)}₪`);
+        const hoursText = document.createTextNode(`${record.start.hours}:${record.start.minutes} - ${record.end.hours}:${record.end.minutes}.
+         \n You\`ve worked for ${hours.hours} hours and ${hours.minutes} minutes. and made ${(((hours.minutes / 60) + hours.hours) * info.hourlyRate).toFixed(2)}₪`);
         details.appendChild(hoursText);
 
         link.textContent = "✖";
@@ -348,4 +349,19 @@ function removeEntry(index) {
             location.reload();
         }
     }
+}
+
+function loadLinksMenu()
+{
+    const linksMenu = document.getElementById("linksMenu");
+    const image = document.getElementById('linksMenuBtnImg');
+
+    if(linksMenu.style.display == "flex")
+    {
+        linksMenu.style.display = "none";
+        image.src = 'menuBtn.png';
+        return;
+    }
+    linksMenu.style.display = "flex";
+    image.src = 'XBtn.png';
 }
