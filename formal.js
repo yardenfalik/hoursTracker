@@ -81,7 +81,7 @@ function generateSummaryTable(data) {
     const generalHeader = document.createElement('th');
     generalHeader.textContent = 'General';
     const generalCell = document.createElement('td');
-    generalCell.textContent = `Your dates: ${totalEntries}, Total hours: ${Math.floor(totalDurations / 60)}:${(totalDurations % 60).toString().padStart(2, '0')}`;
+    generalCell.textContent = `Work Days: ${totalEntries}, Total hours: ${Math.floor(totalDurations / 60)}:${(totalDurations % 60).toString().padStart(2, '0')}`;
     generalRow.appendChild(generalHeader);
     generalRow.appendChild(generalCell);
     table.appendChild(generalRow);
@@ -132,7 +132,7 @@ function writeTitle()
 const container = document.getElementById('tableContainer');
 
 // Generate the table and append it to the container
-container.appendChild(generateTable(timeSchedule.reverse()));
+container.appendChild(generateTable(timeSchedule));
 
 writeTitle();
 
