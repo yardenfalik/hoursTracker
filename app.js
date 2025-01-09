@@ -123,15 +123,15 @@ function calculateWorkHours(startTime, endTime)
     return {hours, minutes};
 }
 
-function displayPastWorkHours() {
+function displayPastWorkHours(data = timeSchedule.reverse()) {
     const pastWorkHoursDisplay = document.getElementById("pastWorkHoursDisplay");
 
     // Clear previous content
     pastWorkHoursDisplay.innerHTML = "";
 
-    for (let i = 0; i < timeSchedule.length; i++) 
+    for (let i = 0; i < data.length; i++) 
     {
-        const record = timeSchedule[i];
+        const record = data[i];
         if(record.end.hours === 0 && record.end.minutes === 0)
         {
             continue;
@@ -309,14 +309,38 @@ function addHours()
 
 function exportData()
 {
-    const data = JSON.stringify(timeSchedule);
-    const blob = new Blob([data], {type: 'application/json'});
-    const url = URL.createObjectURL(blob);
+    data = timeSchedule;
+    
+    const headers = ['Date', 'Start Time', 'End Time', 'Duration'];
+    const rows = [headers.join(',')];
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "workHours.json";
-    a.click();
+    data.forEach(entry => {
+        const startTime = `${entry.start.hours}:${entry.start.minutes.toString().padStart(2, '0')}`;
+        const endTime = `${entry.end.hours}:${entry.end.minutes.toString().padStart(2, '0')}`;
+        const startMinutes = entry.start.hours * 60 + entry.start.minutes;
+        const endMinutes = entry.end.hours * 60 + entry.end.minutes;
+        const durationMinutes = endMinutes - startMinutes;
+        const duration = durationMinutes > 0
+            ? `${Math.floor(durationMinutes / 60)}:${(durationMinutes % 60).toString().padStart(2, '0')}`
+            : '0:00';
+
+        const row = [
+            new Date(entry.date).toLocaleDateString(),
+            startTime,
+            endTime,
+            duration
+        ].join(',');
+
+        rows.push(row);
+    });
+
+    const csvContent = rows.join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'workHours.csv';
+    link.click();
 }
 
 function getRandomQuote() {
@@ -358,10 +382,16 @@ function loadLinksMenu()
 
     if(linksMenu.style.display == "flex")
     {
-        linksMenu.style.display = "none";
+        linksMenu.classList.add("linksMenuCloseing");
+        setTimeout(() => {
+            linksMenu.style.display = "none";
+            linksMenu.classList.remove("linksMenuCloseing");
+        }, 500);
+
         image.src = 'menuBtn.png';
         return;
     }
     linksMenu.style.display = "flex";
+    linksMenu.classList.remove("linksMenuCloseing");
     image.src = 'XBtn.png';
 }
