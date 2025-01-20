@@ -37,7 +37,7 @@ Using HoursTracker is quick and easy:
    - Check the total revenue calculated from your logged shifts and hourly rate.  
 
 3. **Export Your Data**:  
-   - Click the "Export to CSV" option to download your logged shifts and revenue data.  
+   - Click the "Export Work Hours" option to download your logged shifts and revenue data.  
    - Use the CSV file for record-keeping or analysis in spreadsheet software.  
 
 4. **Manage Your Shifts**:  
