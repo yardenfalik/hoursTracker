@@ -3,6 +3,18 @@ var info = {name : "", workplace : "", hourlyRate : 0}
 
 init();
 
+if ('serviceWorker' in navigator) 
+{
+    window.addEventListener('load', async () => {
+        try {
+        const reg = await navigator.serviceWorker.register("/service-worker.js");
+        console.log('Service worker registered', reg);
+        } catch (err) {
+        console.log('Service worker registration failed: ', err);
+        }
+    });
+}
+
 function init()
 {
     const greeting = document.getElementById("greeting");
