@@ -124,14 +124,18 @@ function calculateWorkHours(startTime, endTime)
 }
 
 function displayPastWorkHours(data = timeSchedule.reverse()) {
+    const thisMonthDisplay = document.getElementById("thisMonthDisplay");
     const pastWorkHoursDisplay = document.getElementById("pastWorkHoursDisplay");
 
+    const currentMonth = new Date().getMonth();
     // Clear previous content
+    thisMonthDisplay.innerHTML = "";
     pastWorkHoursDisplay.innerHTML = "";
 
     for (let i = 0; i < data.length; i++) 
     {
         const record = data[i];
+
         if(record.end.hours === 0 && record.end.minutes === 0)
         {
             continue;
@@ -162,7 +166,15 @@ function displayPastWorkHours(data = timeSchedule.reverse()) {
         link.textContent = "✖";
         li.appendChild(link);
         li.appendChild(details);
-        pastWorkHoursDisplay.appendChild(li);
+
+        if(new Date(record.date).getMonth() !== currentMonth)
+        {
+            pastWorkHoursDisplay.appendChild(li);
+        }
+        else
+        {
+            thisMonthDisplay.appendChild(li);
+        }
     }
 
     const elapsedTimeText = document.getElementById("elapsedTime");
@@ -237,10 +249,13 @@ function displaySummery()
     let totalHoursWorked = 0;
     let totalEarningsMade = 0;
 
+    const currentMonth = new Date().getMonth();
+
     for (let i = 0; i < timeSchedule.length; i++) 
     {
         const record = timeSchedule[i];
-        if(record.end.hours === 0 && record.end.minutes === 0)
+
+        if((record.end.hours === 0 && record.end.minutes === 0) || (new Date(record.date).getMonth() !== currentMonth))
         {
             continue;
         }
@@ -255,7 +270,7 @@ function displaySummery()
     }
 
     li = document.createElement("li");
-    li.textContent = `You've worked for ${totalHoursWorked.toFixed(2)} hours and made ${totalEarningsMade.toFixed(2)}₪.`;
+    li.textContent = `You've worked for ${totalHoursWorked.toFixed(2)} hours and made ${totalEarningsMade.toFixed(2)}₪ this month.`;
     summery.appendChild(li);
 }
 
