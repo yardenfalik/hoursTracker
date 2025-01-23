@@ -1,7 +1,7 @@
 // Choose a cache name
 const cacheName = 'cache-v1';
 // List the files to precache
-const precacheResources = ['/', '/index.html', '/formal.html', '/style.css', '/formalStyle.css', '/app.js', '/formal.js', 'logo.png', 'menuBtn.png', 'XBtn.png'];
+const precacheResources = ['/', '/index.html', '/formal.html', '/style.css', '/formalStyle.css', '/app.js', '/formal.js', '/manifest.json', 'logo.png', 'menuBtn.png', 'XBtn.png'];
 
 // When the service worker is installing, open the cache and add the precache resources to it
 self.addEventListener('install', (event) => {
