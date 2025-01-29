@@ -44,7 +44,7 @@ function checkIfWorkStarted()
     const stopBtn = document.getElementById("stopBtn");
     const lastRecord = timeSchedule[timeSchedule.length - 1];
     
-    if(lastRecord.end.hours === 0 && lastRecord.end.minutes === 0)
+    if(lastRecord.end.hours == 0 && lastRecord.end.minutes == 0)
     {
         startBtn.style.display = "none";
         stopBtn.style.display = "block";
