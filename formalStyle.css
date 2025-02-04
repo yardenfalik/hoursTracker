@@ -33,3 +33,8 @@ th, td {
     height: 25px;
     filter: brightness(0%);
 }
+
+.invisibleMargin {
+    height: 10px;
+    width: 5px;
+}
