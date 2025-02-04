@@ -43,8 +43,9 @@ function checkIfWorkStarted()
     const startBtn = document.getElementById("startBtn");
     const stopBtn = document.getElementById("stopBtn");
     const lastRecord = timeSchedule[timeSchedule.length - 1];
+    const firstRecord = timeSchedule[0];
     
-    if(lastRecord.end.hours == 0 && lastRecord.end.minutes == 0)
+    if((lastRecord.end.hours == 0 && lastRecord.end.minutes == 0) || (firstRecord.end.hours == 0 && firstRecord.end.minutes == 0))
     {
         startBtn.style.display = "none";
         stopBtn.style.display = "block";
@@ -140,6 +141,7 @@ function displayPastWorkHours(data = timeSchedule.reverse()) {
     const pastWorkHoursDisplay = document.getElementById("pastWorkHoursDisplay");
 
     const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
     // Clear previous content
     thisMonthDisplay.innerHTML = "";
     pastWorkHoursDisplay.innerHTML = "";
@@ -179,7 +181,7 @@ function displayPastWorkHours(data = timeSchedule.reverse()) {
         li.appendChild(link);
         li.appendChild(details);
 
-        if(new Date(record.date).getMonth() !== currentMonth)
+        if((new Date(record.date).getMonth() !== currentMonth) || (new Date(record.date).getFullYear() !== currentYear))
         {
             pastWorkHoursDisplay.appendChild(li);
         }
@@ -262,12 +264,13 @@ function displaySummery()
     let totalEarningsMade = 0;
 
     const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
 
     for (let i = 0; i < timeSchedule.length; i++) 
     {
         const record = timeSchedule[i];
 
-        if((record.end.hours === 0 && record.end.minutes === 0) || (new Date(record.date).getMonth() !== currentMonth))
+        if((record.end.hours === 0 && record.end.minutes === 0) || (new Date(record.date).getMonth() !== currentMonth) || (new Date(record.date).getFullYear() !== currentYear))
         {
             continue;
         }

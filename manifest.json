@@ -4,6 +4,6 @@
     "start_url" : "/hoursTracker",
     "background_color" : "#f2f2f7",
     "theme_color" : "#f2f2f7",
-    "display" : "fullscreen",
+    "display" : "standalone",
     "icons" : [{"src": "logo.png", "sizes": "256x256", "type": "image/png"}]
 }

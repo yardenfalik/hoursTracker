@@ -1,6 +1,10 @@
-function generateTable(data) {
+var stateMonth;
+var stateYear = 0;
+
+function generateTable(data, month, year) {
     const headers = ['Date', 'Start Time', 'End Time', 'Duration'];
-    const currentMonth = new Date().getMonth() + 1;
+
+    const currentMonth = month + 1;
 
     // Create table and header row
     const table = document.createElement('table');
@@ -15,7 +19,7 @@ function generateTable(data) {
     // Add data rows
     data.forEach(({ date, start, end }) => {
         const rowDate = new Date(date);
-        if (rowDate.getMonth() + 1 !== currentMonth) return;
+        if ((rowDate.getMonth() + 1 !== currentMonth) || (rowDate.getFullYear()) !== year) return;
 
         const row = document.createElement('tr');
         const cells = [
@@ -46,8 +50,9 @@ function calculateDuration(start, end) {
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 }
 
-function generateSummaryTable(data) {
-    const currentMonth = new Date().getMonth() + 1;
+function generateSummaryTable(data, month, year) {
+    const currentMonth = month + 1;
+
     let totalDurations = 0;
     let totalEntries = 0;
     let totalRevenue = 0;
@@ -55,7 +60,7 @@ function generateSummaryTable(data) {
     // Calculate total durations, revenue, and count valid entries
     data.forEach(({ date, start, end, hourlyRate }) => {
         const rowDate = new Date(date);
-        if (rowDate.getMonth() + 1 !== currentMonth) return;
+        if ((rowDate.getMonth() + 1 !== currentMonth) || (rowDate.getFullYear()) !== year) return;
 
         const startMinutes = start.hours * 60 + start.minutes;
         const endMinutes = end.hours * 60 + end.minutes;
@@ -117,23 +122,65 @@ function formatDuration(minutes) {
     return `${hours}:${mins.toString().padStart(2, '0')}`;
 }
 
-function writeTitle()
+function writeTitle(month, year)
 {
+    var months = [ "January", "February", "March", "April", "May", "June", 
+           "July", "August", "September", "October", "November", "December" ];
     const name =  document.getElementById('name');
     const workplace = document.getElementById('workplace');
-    const month = document.getElementById('month');
+    const monthDisplay = document.getElementById('month');
 
     name.textContent = "Worker Name: " + info.name;
     workplace.textContent = "Workplace: " + info.workplace;
-    month.textContent = "Month: " + new Date().toLocaleString('default', { month: 'long' });
+
+    monthDisplay.textContent = "Date: " + months[month] + " " + year;
 }
 
-// Get the container element to display the table
-const container = document.getElementById('tableContainer');
+function previousBtn()
+{
+    if(stateMonth != 0)
+    {
+        stateMonth -= 1;
+    }
+    else
+    {
+        stateYear -= 1;
+        stateMonth = 11;
+    }
+    functionsCaller(stateMonth, stateYear);
+}
 
-// Generate the table and append it to the container
-container.appendChild(generateTable(timeSchedule));
+function nextBtn()
+{
+    if(stateMonth != 11)
+    {
+        stateMonth += 1;
+    }
+    else
+    {
+        stateYear += 1;
+        stateMonth = 0;
+    }
+    functionsCaller(stateMonth, stateYear);
+}
 
-writeTitle();
+function functionsCaller(month, year)
+{
+    // Get the container element to display the table
+    const container = document.getElementById('tableContainer');
 
-container.appendChild(generateSummaryTable(timeSchedule.reverse()));
+    container.innerHTML = "";
+
+    // Generate the table and append it to the container
+    container.appendChild(generateTable(timeSchedule, month, year));
+
+    writeTitle(month, year);
+
+    container.appendChild(generateSummaryTable(timeSchedule.reverse(), month, year));
+}
+
+const currentDate = new Date();
+stateYear = currentDate.getFullYear();
+stateMonth = currentDate.getMonth();
+
+functionsCaller(stateMonth, stateYear);
