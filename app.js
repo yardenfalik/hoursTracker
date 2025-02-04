@@ -43,9 +43,8 @@ function checkIfWorkStarted()
     const startBtn = document.getElementById("startBtn");
     const stopBtn = document.getElementById("stopBtn");
     const lastRecord = timeSchedule[timeSchedule.length - 1];
-    const firstRecord = timeSchedule[0];
     
-    if((lastRecord.end.hours == 0 && lastRecord.end.minutes == 0) || (firstRecord.end.hours == 0 && firstRecord.end.minutes == 0))
+    if((lastRecord.end.hours == 0 && lastRecord.end.minutes == 0))
     {
         startBtn.style.display = "none";
         stopBtn.style.display = "block";
@@ -58,14 +57,12 @@ function checkIfWorkStarted()
 
 function loadTimeSchedule() 
 {
-    if (localStorage.getItem('timeSchedule')) 
-    {
-        timeSchedule = JSON.parse(localStorage.getItem('timeSchedule'));
-    }
-    if (localStorage.getItem('info')) 
-    {
-        info = JSON.parse(localStorage.getItem('info'));
-    }
+    const savedList = localStorage.getItem('timeSchedule');
+    timeSchedule = savedList ? JSON.parse(savedList) : [];
+    timeSchedule = timeSchedule.reverse();
+
+    const savedInfo = localStorage.getItem('info');
+    info =  savedInfo ? JSON.parse(savedInfo) : {name : "", workplace : "", hourlyRate : 0}; 
 }
 
 function startRecordHours()
@@ -142,6 +139,7 @@ function displayPastWorkHours(data = timeSchedule.reverse()) {
 
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
+
     // Clear previous content
     thisMonthDisplay.innerHTML = "";
     pastWorkHoursDisplay.innerHTML = "";
