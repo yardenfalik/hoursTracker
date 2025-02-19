@@ -19,15 +19,20 @@
     <title>Hours Tracker</title>
 </head>
 <body>
-    <main>
+    <main id="main">
         <div class="colors"></div>
-        <button onclick="loadLinksMenu()" class="linksMenuBtn"><img id="linksMenuBtnImg" src="menuBtn.png" alt=""></button>
-        <div class="linksMenu" id="linksMenu">
-            <a href="/hoursTracker">Home</a>
-            <a href="/hoursTracker/formal.html">Table View</a>
-        </div>
+        <nav id="stickyNav">
+            <p id="navTitle" class="navTitle"></p>
+            <button onclick="loadLinksMenu()" class="linksMenuBtn"><img id="linksMenuBtnImg" src="menuBtn.png" alt=""></button>
+            <div class="linksMenu" id="linksMenu">
+                <a href="/hoursTracker">Home</a>
+                <a href="/hoursTracker/formal.html">Table View</a>
+            </div>
+        </nav>
+
         <h1 class="title" id="title"></h1>
         <h3 id="greeting" class="greeting"></h3>
+        
         <h3 id="motivationalQuotes" class="greeting quotes"></h3>
     
         <h2 class="pastWorkHoursDisplayTitle">This Month</h2>
@@ -69,6 +74,8 @@
             <a onclick="exportData()" class="exportDataBtn">Export Work Hours</a>
         </div>
     </div>
+
     <script src="app.js"></script>
+    <script src="styleFunctions.js"></script>
 </body>
 </html>

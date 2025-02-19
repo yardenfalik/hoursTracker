@@ -1,3 +1,7 @@
+body {
+    display: block !important;
+}
+
 table, th, td {
     border-collapse: collapse;
     border: 2px solid #000000;

@@ -2,8 +2,8 @@
     "name" : "Hours Tracker",
     "short_name" : "Hours Tracker",
     "start_url" : "/hoursTracker",
-    "background_color" : "#f2f2f7",
-    "theme_color" : "#f2f2f7",
+    "background_color" : "#ffffffdc",
+    "theme_color" : "#ffffffdc",
     "display" : "standalone",
     "icons" : [{"src": "logo.png", "sizes": "256x256", "type": "image/png"}]
 }

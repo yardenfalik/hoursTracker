@@ -35,7 +35,7 @@ function init()
     
         title.textContent = `👋 Hi, ${info.name}!`;
         greeting.textContent = `workplace: ${info.workplace}.`;
-    }
+    } 
 }
 
 function checkIfWorkStarted() 
@@ -417,9 +417,11 @@ function loadLinksMenu()
         }, 500);
 
         image.src = 'menuBtn.png';
+        image.style.filter = "invert(1)";
         return;
     }
     linksMenu.style.display = "flex";
     linksMenu.classList.remove("linksMenuCloseing");
     image.src = 'XBtn.png';
+    image.style.filter = "invert(0)";
 }
