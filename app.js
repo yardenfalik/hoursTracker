@@ -232,13 +232,21 @@ function toggleSettingsMenu()
 {
     const settingsMenu = document.getElementById("settingsMenu");
 
-    if(settingsMenu.style.display == "none" || settingsMenu.style.display == "")
+    const nameInput = document.getElementById("name");
+    const workplaceInput = document.getElementById("workplace");
+    const hourlyRateInput = document.getElementById("hourlyRate");
+
+    if(!settingsMenu.classList.contains("open"))
     {
-        settingsMenu.style.display = "block";
+        nameInput.value = info.name;
+        workplaceInput.value = info.workplace;
+        hourlyRateInput.value = info.hourlyRate;
+
+        settingsMenu.classList.add("open");
     }
     else
     {
-        settingsMenu.style.display = "none";
+        settingsMenu.classList.remove("open");
     }
 }
 
@@ -302,13 +310,13 @@ function toggleAddHoursMenu()
 {
     const addHoursMenu = document.getElementById("addHoursMenu");
 
-    if(addHoursMenu.style.display == "none" || addHoursMenu.style.display == "")
+    if(!addHoursMenu.classList.contains("open"))
     {
-        addHoursMenu.style.display = "block";
+        addHoursMenu.classList.add("open");
     }
     else
     {
-        addHoursMenu.style.display = "none";
+        addHoursMenu.classList.remove("open");
     }
 }
 

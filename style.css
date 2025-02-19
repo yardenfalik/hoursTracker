@@ -266,69 +266,102 @@ nav.sticky {
     left: 20px;
 }
 
-.settingsMenu {
-    z-index: 10;
-    position: absolute;
-    width: 250px;
-    height: fit-content;
+.settingsMenu, .addHoursMenu {
+    display: flex;
+    justify-content: center;
+    
+    width: 100%;
 
-    padding: 10px 10px;
+    position: fixed;
+    bottom: 0;
+    background-color: #FAFAFA;
 
-    background-color: #ffffff;
-    border-radius: 15px;
+    height: 90%;
+    transform: translateY(100%);
 
     box-shadow: 0 0 10px 0 #0000001a;
 
-    display: none;
+    border-radius: 15px 15px 0 0;
+
+    z-index: 10;
+
+    display: block;
+    transition: transform 0.5s ease-in-out;
 }
 
-.addHoursMenu {
-    z-index: 10;
-    position: absolute;
-    width: 250px;
-    height: fit-content;
+.addHoursMenu.open, .settingsMenu.open {
+    transform: translateY(0);
+}
 
-    padding: 10px 10px;
+.settingsTitle {
+    font-size: 200%;
+    font-weight: bold;
+    margin-left: 10px;
+}
 
-    background-color: #ffffff;
-    border-radius: 15px;
+.settingsCloseBtn {
+    position: fixed;
+    color: #013f8a;
+    margin-top: 10px;
+    left: 10px;
+    text-decoration: none;
+}
 
-    box-shadow: 0 0 10px 0 #0000001a;
+.settingsSaveBtn {
+    position: fixed;
+    color: #013f8a;
+    margin-top: 10px;
+    right: 10px;
+    text-decoration: none;
+}
 
-    display: none;
+.exportDataBtn {
+    color: #013f8a;
+    padding: 5px;
+}
+
+.resetDataBtn {
+    color: #ff0000;
+    padding: 5px;
 }
 
 .settingsMenu input, .addHoursMenu input {
-    border: solid #e1e1e1 2px;
-    border-radius: 10px;
+    border: none;
+    border-radius: 5px;
     padding: 5px;
     margin: 5px 0;
-    
+    margin-right: 20px;
+
     font-family: "Heebo", serif;
-    box-shadow: 0 0 10px 0 #0000001a;
+    background-color: #EFEFEF;
 }
 
-.settingsMenu button, .addHoursMenu button {
-    background-color: #013f8a;
-    color: white;
-
-    border: none;
+.addHoursMenu ul, .settingsMenu ul {
+    list-style-type: none;
+    background-color: #ffffff;
     border-radius: 10px;
-    padding: 5px 20px;
+    box-shadow: 0 0 10px 0 #0000001a;
 
-    font-family: "Heebo", serif;
-    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0px;
+
+    padding-left: 20px;
+}
+
+.addHoursMenu li, .settingsMenu li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addHoursMenu li:not(:last-child), .settingsMenu li:not(:last-child) {
+    border-bottom: solid #e1e1e1 2px;
 }
 
 .settingsMenu p, .addHoursMenu p {
     margin-bottom: 0;
     margin-top: 0;
-    font-weight: bold;
-}
-
-.settingsMenu a, .addHoursMenu a {
-    text-decoration: underline;
-    color: #585858;
     font-weight: bold;
 }
 
