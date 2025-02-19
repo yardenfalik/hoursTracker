@@ -328,7 +328,7 @@ nav.sticky {
 .settingsMenu input, .addHoursMenu input {
     border: none;
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px;
     margin: 5px 0;
     margin-right: 20px;
 
@@ -353,6 +353,8 @@ nav.sticky {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
+    font-size: 150%;
 }
 
 .addHoursMenu li:not(:last-child), .settingsMenu li:not(:last-child) {
