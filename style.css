@@ -85,6 +85,12 @@ main {
     box-shadow: 0 0 10px 0 #0000001a;
 
     border-radius: 15px 15px 0 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+.controls.collapsed {
+    transform: translateY(275px);
+    transition: all 0.5s;
 }
 
 nav {
@@ -328,7 +334,7 @@ nav.sticky {
 .settingsMenu input, .addHoursMenu input {
     border: none;
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px 20px;
     margin: 5px 0;
     margin-right: 20px;
 
@@ -347,14 +353,16 @@ nav.sticky {
     margin-top: 0px;
 
     padding-left: 20px;
+
+    font-size: 125%;
 }
 
 .addHoursMenu li, .settingsMenu li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    font-size: 150%;
+
+  
 }
 
 .addHoursMenu li:not(:last-child), .settingsMenu li:not(:last-child) {

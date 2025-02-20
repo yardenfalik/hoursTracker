@@ -171,12 +171,24 @@ function functionsCaller(month, year)
 
     container.innerHTML = "";
 
+    var data = [];
+
+    for (var i = 0; i < timeSchedule.length; i++)
+    {
+        var entry = timeSchedule[i];
+
+        if(entry.end.hours != 0 && entry.end.minutes != 0)
+        {
+            data.push(entry);
+        }
+    }
+
     // Generate the table and append it to the container
-    container.appendChild(generateTable(timeSchedule, month, year));
+    container.appendChild(generateTable(data, month, year));
 
     writeTitle(month, year);
 
-    container.appendChild(generateSummaryTable(timeSchedule.reverse(), month, year));
+    container.appendChild(generateSummaryTable(data.reverse(), month, year));
 }
 
 const currentDate = new Date();
