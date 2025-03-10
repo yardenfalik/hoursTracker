@@ -29,13 +29,13 @@ controlsContainer.addEventListener("click", () => {
     controlsContainer.classList.remove("collapsed");
 });
 
-const settingsMenu = document.getElementById("settingsMenu");
-const addHoursMenu = document.getElementById("addHoursMenu");
+// const settingsMenu = document.getElementById("settingsMenu");
+//const addHoursMenu = document.getElementById("addHoursMenu");
 
-settingsMenu.addEventListener("click", () => {
-    settingsMenu.classList.remove("open");
-});
+//settingsMenu.addEventListener("click", () => {
+    //settingsMenu.classList.remove("open");
+//});
 
-addHoursMenu.addEventListener("click", () => {
-    addHoursMenu.classList.remove("open");
-});
+//addHoursMenu.addEventListener("click", () => {
+    //addHoursMenu.classList.remove("open");
+//});
