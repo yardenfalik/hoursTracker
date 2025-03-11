@@ -115,6 +115,7 @@ nav.sticky {
     border-bottom: solid #e1e1e1 0.5px;
     backdrop-filter: blur(13px);
     -webkit-backdrop-filter: blur(13px);
+    transition: background 0.3s;
 }
 
 .navTitle {
