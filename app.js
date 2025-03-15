@@ -3,18 +3,6 @@ var info = {name : "", workplace : "", hourlyRate : 0}
 
 init();
 
-if ('serviceWorker' in navigator) 
-{
-    window.addEventListener('load', async () => {
-        try {
-        const reg = await navigator.serviceWorker.register("/service-worker.js");
-        console.log('Service worker registered', reg);
-        } catch (err) {
-        console.log('Service worker registration failed: ', err);
-        }
-    });
-}
-
 function init()
 {
     const greeting = document.getElementById("greeting");
@@ -25,7 +13,7 @@ function init()
     if(info.name == "" || info.workplace == "")
     {
         console.log(info.name)
-        toggleSettingsMenu();
+        toggleMenu("settings");
     }
     else
     {
@@ -175,6 +163,11 @@ function displayPastWorkHours(data = timeSchedule.reverse()) {
          \n You\`ve worked for ${hours.hours} hours and ${hours.minutes} minutes. and made ${(((hours.minutes / 60) + hours.hours) * info.hourlyRate).toFixed(2)}₪`);
         details.appendChild(hoursText);
 
+        let editBtn = document.createElement("a");
+        editBtn.onclick = () => editEntry(i);
+        editBtn.textContent = "Edit";
+        details.appendChild(editBtn);
+
         link.textContent = "✖";
         li.appendChild(link);
         li.appendChild(details);
@@ -228,28 +221,6 @@ function updateRadialIndicator(startHour, startMinutes) {
     elapsedTimeText.textContent = `You\`ve worked for ${elapsedHours}h ${elapsedMinutes}m ${elapsedSeconds}s.`;
 }
 
-function toggleSettingsMenu()
-{
-    const settingsMenu = document.getElementById("settingsMenu");
-
-    const nameInput = document.getElementById("name");
-    const workplaceInput = document.getElementById("workplace");
-    const hourlyRateInput = document.getElementById("hourlyRate");
-
-    if(!settingsMenu.classList.contains("open"))
-    {
-        nameInput.value = info.name;
-        workplaceInput.value = info.workplace;
-        hourlyRateInput.value = info.hourlyRate;
-
-        settingsMenu.classList.add("open");
-    }
-    else
-    {
-        settingsMenu.classList.remove("open");
-    }
-}
-
 function saveInfo()
 {
     info.name = document.getElementById("name").value;
@@ -258,7 +229,7 @@ function saveInfo()
 
     localStorage.setItem('info', JSON.stringify(info));
 
-    toggleSettingsMenu();
+    toggleMenu("settings");
     location.reload();
 }
 
@@ -306,25 +277,61 @@ function resetData()
     }
 }
 
-function toggleAddHoursMenu()
-{
-    const addHoursMenu = document.getElementById("addHoursMenu");
+function toggleMenu(type)
+{   
+    let menuToOpen = document.getElementById("addHoursMenu");
 
-    if(!addHoursMenu.classList.contains("open"))
+    if(type == "addHours")
     {
-        addHoursMenu.classList.add("open");
+        menuToOpen = document.getElementById("addHoursMenu");
+    }
+    else if(type == "settings")
+    {
+        document.getElementById("name").value = info.name;
+        document.getElementById("workplace").value = info.workplace;
+        document.getElementById("hourlyRate").value = info.hourlyRate;
+
+        menuToOpen = document.getElementById("settingsMenu");
+    }
+    else if(type == "editEntry")
+    {
+        menuToOpen = document.getElementById("editEntryMenu");
+    }
+
+    if(!menuToOpen.classList.contains("open"))
+    {
+        menuToOpen.classList.add("open");
     }
     else
     {
-        addHoursMenu.classList.remove("open");
+        menuToOpen.classList.remove("open");
     }
 }
 
-function addHours()
+function addHoursMenu()
 {
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("startTime").value;
     const endTime = document.getElementById("endTime").value;
+
+    addHours(date, startTime, endTime);
+}
+
+function forgotToStart()
+{
+    const startTime = document.getElementById("startTimeForgot").value;
+    const date = new Date();
+    
+    addHours(date, startTime, "00:00");
+}
+
+function addHours(date, startTime, endTime)
+{
+    if(date == "" || startTime == "" || endTime == "")
+    {
+        location.reload();
+        return;
+    }
 
     const dateVar = new Date(date);
 
@@ -409,6 +416,34 @@ function removeEntry(index) {
             location.reload();
         }
     }
+}
+
+function editEntry(index)
+{
+    toggleMenu("editEntry");
+
+    document.getElementById("editEntrySubmit").addEventListener("click", () => {
+        const startTime = document.getElementById("startTimeEdit").value;
+        const endTime = document.getElementById("endTimeEdit").value;
+        
+        if(startTime != "" && endTime != "")
+        {
+            const start = {hours: parseInt(startTime.split(":")[0]), minutes: parseInt(startTime.split(":")[1])};
+            const end = {hours: parseInt(endTime.split(":")[0]), minutes: parseInt(endTime.split(":")[1])};
+
+            timeSchedule[index].start = start;
+            timeSchedule[index].end = end;
+
+            updateDatabase();
+        }
+        location.reload();
+    }, { once: true });
+}
+
+function editEntrySubmit()
+{
+    startTime = document.getElementById("startTimeEdit").value;
+    endTime = document.getElementById("endTimeEdit").value;
 }
 
 function loadLinksMenu()

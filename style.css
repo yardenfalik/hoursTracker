@@ -108,6 +108,7 @@ nav {
     height: 44pt;
 
     background: #ffffff00;
+    transition: opacity 0.5s;
 }
 
 nav.sticky {
@@ -115,7 +116,12 @@ nav.sticky {
     border-bottom: solid #e1e1e1 0.5px;
     backdrop-filter: blur(13px);
     -webkit-backdrop-filter: blur(13px);
-    transition: background 0.3s;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+nav.sticky .linksMenuBtn {
+    opacity: 1;
 }
 
 .navTitle {
@@ -132,7 +138,8 @@ nav.sticky {
 
     text-align: center;
     text-decoration: none;
-    font-size: 250%;
+    font-size: 200%;
+    font-weight: bold;
 
     aspect-ratio: 1;
     cursor: pointer;
@@ -144,6 +151,16 @@ nav.sticky {
     
     position: absolute;
     bottom: 50px;
+}
+
+.startStopBtn img {
+    width: 85px;
+    aspect-ratio: 1;
+}
+
+.startStopBtn p {
+    margin: 0;
+    margin-bottom: 20px;
 }
 
 .pastWorkHoursDisplayContainer {
@@ -304,6 +321,7 @@ nav.sticky {
     font-size: 200%;
     font-weight: bold;
     margin-left: 10px;
+    margin-top: 30px;
 }
 
 .settingsCloseBtn {
@@ -312,6 +330,8 @@ nav.sticky {
     margin-top: 10px;
     left: 10px;
     text-decoration: none;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .settingsSaveBtn {
@@ -320,6 +340,7 @@ nav.sticky {
     margin-top: 10px;
     right: 10px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .exportDataBtn {
@@ -330,17 +351,22 @@ nav.sticky {
 .resetDataBtn {
     color: #ff0000;
     padding: 5px;
+    cursor: pointer;
 }
 
 .settingsMenu input, .addHoursMenu input {
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    
+    height: 35px;
+    width: 90px;
     margin: 5px 0;
     margin-right: 20px;
 
     font-family: "Heebo", serif;
     background-color: #EFEFEF;
+
+    -webkit-appearance: none;
 }
 
 .addHoursMenu ul, .settingsMenu ul {
@@ -358,16 +384,31 @@ nav.sticky {
     font-size: 125%;
 }
 
+.addHoursMenu h3 {
+    margin: 0;
+}
+
 .addHoursMenu li, .settingsMenu li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-  
 }
 
 .addHoursMenu li:not(:last-child), .settingsMenu li:not(:last-child) {
     border-bottom: solid #e1e1e1 2px;
+}
+
+.forgotContainer > li:not(:last-child) {
+    border-bottom: none;
+}
+
+.forgotContainer a {
+    text-decoration: none;
+    color: #013f8a;
+    cursor: pointer;
+    position: relative;
+    right: 20px;
+    font-size: 150%;
 }
 
 .settingsMenu p, .addHoursMenu p {

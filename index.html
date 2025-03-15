@@ -23,7 +23,7 @@
         <div class="colors"></div>
         <nav id="stickyNav">
             <p id="navTitle" class="navTitle"></p>
-            <button onclick="loadLinksMenu()" class="linksMenuBtn"><img id="linksMenuBtnImg" src="menuBtn.png" alt=""></button>
+            <button onclick="loadLinksMenu()" class="linksMenuBtn" id="linksMenuBtn"><img id="linksMenuBtnImg" src="menuBtn.png" alt=""></button>
             <div class="linksMenu" id="linksMenu">
                 <a href="/hoursTracker">Home</a>
                 <a href="/hoursTracker/formal.html">Table View</a>
@@ -48,33 +48,42 @@
 
     <div class="controls" id="controls">
         <p id="elapsedTime" class="elapsedTime">Work has not started yet.</p>
-        <button class="addHoursBtn" onclick="toggleAddHoursMenu()">+</button>
+        <button class="addHoursBtn" onclick="toggleMenu('addHours')">+</button>
         <div class="addHoursMenu" id="addHoursMenu">
-            <a onclick="toggleAddHoursMenu()" class="settingsCloseBtn">Cancel</a>
-            <a onclick="addHours()" class="settingsSaveBtn">Save</a>
+            <a onclick="toggleMenu('addHours')" class="settingsCloseBtn">Cancel</a>
+            <a onclick="addHoursMenu()" class="settingsSaveBtn">Add</a>
             <h1 class="settingsTitle">New Entry</h1>
             <ul>
                 <li>    
                     <label for="date">Date</label>
-                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" placeholder="date" name="date">
+                    <input type="date" id="date" placeholder="date" name="date">
                 </li>
                 <li>
                     <label for="startTime">From</label>
-                    <input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" id="startTime" placeholder="Start Time">
+                    <input type="time" id="startTime" placeholder="Start Time">
                 </li>
                 <li>
                     <label for="endTime">Until</label>
-                    <input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" id="endTime" placeholder="End Time">
+                    <input type="time" id="endTime" placeholder="End Time">
+                </li>
+            </ul>
+
+            <ul class="forgotContainer">
+                <li><h3>Forgot to punch in</h3></li>
+                <li>
+                    <label for="startTimeForgot">Start Time:</label>
+                    <input type="time" id="startTimeForgot" name="startTimeForgot" placeholder="Start Time">
+                    <a onclick="forgotToStart()">➜</a>
                 </li>
             </ul>
         </div>
 
-        <button class="startStopBtn" id="startBtn" onclick="startRecordHours()">Punch In</button>
-        <button class="startStopBtn" id="stopBtn" onclick="stopRecordHours()" hidden>Punch Out</button>
+        <button class="startStopBtn" id="startBtn" onclick="startRecordHours()"><img src="img/punchInIcon.png"><br><p>Punch In</p></button>
+        <button class="startStopBtn" id="stopBtn" onclick="stopRecordHours()" hidden><img src="img/punchOutIcon.png"><br><p>Punch Out</p></button>
         
-        <button class="settingsBtn" onclick="toggleSettingsMenu()">ⓘ</button>
+        <button class="settingsBtn" onclick="toggleMenu('settings')">ⓘ</button>
         <div class="settingsMenu" id="settingsMenu">
-            <a onclick="toggleSettingsMenu()" class="settingsCloseBtn">Close</a>
+            <a onclick="toggleMenu('settings')" class="settingsCloseBtn">Close</a>
             <a onclick="saveInfo()" class="settingsSaveBtn">Save</a>
             <h1 class="settingsTitle">Personal Info</h1>
             <ul>
@@ -95,6 +104,22 @@
             <ul>
                 <li><a onclick="exportData()" class="exportDataBtn">Export Work Hours</a></li>
                 <li><a onclick="resetData()" class="resetDataBtn">Reset Data</a></li>
+            </ul>
+        </div>
+
+        <div class="addHoursMenu" id="editEntryMenu">
+            <a onclick="toggleMenu('editEntry')" class="settingsCloseBtn">Cancel</a>
+            <a id="editEntrySubmit" class="settingsSaveBtn">Save</a>
+            <h1 class="settingsTitle">Edit Entry</h1>
+            <ul>
+                <li>
+                    <label for="startTimeEdit">From</label>
+                    <input type="time" id="startTimeEdit" placeholder="Start Time">
+                </li>
+                <li>
+                    <label for="endTimeEdit">Until</label>
+                    <input type="time" id="endTimeEdit" placeholder="End Time">
+                </li>
             </ul>
         </div>
     </div>
