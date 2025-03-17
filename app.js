@@ -159,8 +159,8 @@ function displayPastWorkHours(data = timeSchedule.reverse()) {
         details.appendChild(summary);
 
         // Add work hours as text inside details
-        const hoursText = document.createTextNode(`${record.start.hours}:${record.start.minutes} - ${record.end.hours}:${record.end.minutes}.
-         \n You\`ve worked for ${hours.hours} hours and ${hours.minutes} minutes. and made ${(((hours.minutes / 60) + hours.hours) * info.hourlyRate).toFixed(2)}₪`);
+        const hoursText = document.createTextNode(`${record.start.hours}:${String(record.start.minutes).padStart(2, '0')} - ${record.end.hours}:${String(record.end.minutes).padStart(2, '0')}.
+         \n You’ve worked for ${hours.hours} hours and ${hours.minutes} minutes, and made ${(((hours.minutes / 60) + hours.hours) * info.hourlyRate).toFixed(2)}₪`);
         details.appendChild(hoursText);
 
         let editBtn = document.createElement("a");
