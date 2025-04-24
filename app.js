@@ -170,7 +170,7 @@ function displayPastWorkHours(data = timeSchedule.reverse()) {
 
         const xicon = document.createElement("img");
 
-        xicon.src = "/img/XIcon.png";
+        xicon.src = "./img/XIcon.png";
 
         link.appendChild(xicon);
         li.appendChild(link);
@@ -463,10 +463,10 @@ function loadLinksMenu()
             linksMenu.classList.remove("linksMenuCloseing");
         }, 500);
 
-        image.src = '/img/hamburgerMenuIcon.png';
+        image.src = './img/hamburgerMenuIcon.png';
         return;
     }
     linksMenu.style.display = "flex";
     linksMenu.classList.remove("linksMenuCloseing");
-    image.src = '/img/XIcon.png';
+    image.src = './img/XIcon.png';
 }
