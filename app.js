@@ -160,7 +160,7 @@ function displayPastWorkHours(data = timeSchedule.reverse()) {
 
         // Add work hours as text inside details
         const hoursText = document.createTextNode(`${record.start.hours}:${String(record.start.minutes).padStart(2, '0')} - ${record.end.hours}:${String(record.end.minutes).padStart(2, '0')}.
-         \n You’ve worked for ${hours.hours} hours and ${hours.minutes} minutes, and made ${(((hours.minutes / 60) + hours.hours) * info.hourlyRate).toFixed(2)}₪`);
+         \n You've worked for ${hours.hours} hours and ${hours.minutes} minutes, and made ${(((hours.minutes / 60) + hours.hours) * info.hourlyRate).toFixed(2)}₪`);
         details.appendChild(hoursText);
 
         let editBtn = document.createElement("a");
@@ -168,7 +168,11 @@ function displayPastWorkHours(data = timeSchedule.reverse()) {
         editBtn.textContent = "Edit";
         details.appendChild(editBtn);
 
-        link.textContent = "✖";
+        const xicon = document.createElement("img");
+
+        xicon.src = "/img/XIcon.png";
+
+        link.appendChild(xicon);
         li.appendChild(link);
         li.appendChild(details);
 
@@ -459,12 +463,10 @@ function loadLinksMenu()
             linksMenu.classList.remove("linksMenuCloseing");
         }, 500);
 
-        image.src = 'menuBtn.png';
-        image.style.filter = "invert(1)";
+        image.src = '/img/hamburgerMenuIcon.png';
         return;
     }
     linksMenu.style.display = "flex";
     linksMenu.classList.remove("linksMenuCloseing");
-    image.src = 'XBtn.png';
-    image.style.filter = "invert(0)";
+    image.src = '/img/XIcon.png';
 }

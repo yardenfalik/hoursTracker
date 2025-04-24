@@ -84,7 +84,6 @@ main {
 
     box-shadow: 0 0 10px 0 #0000001a;
 
-    border-radius: 15px 15px 0 0;
     transition: transform 0.5s ease-in-out;
 }
 
@@ -191,17 +190,24 @@ nav.sticky .linksMenuBtn {
 
 .pastWorkHoursDisplay li {
     padding: 10px;
-    border-bottom: solid #e1e1e1 2px;
+    border-bottom: solid #e1e1e1 1px;
     cursor: pointer;
 }
 
 .pastWorkHoursDisplay li a {
     text-decoration: none;
-    color: #013f8a;
     cursor: pointer;
 
     position: absolute;
     right: 20px;
+    height: 25px;
+
+    transform: translateY(20%);
+}
+
+.pastWorkHoursDisplay li img {
+    width: 25px;
+    height: 25px;
 }
 
 .pastWorkHoursDisplay li:last-child {
@@ -213,31 +219,51 @@ nav.sticky .linksMenuBtn {
 }
 
 .elapsedTime {
-    background-color: #585858;
-    color: white;
+    background-color: #ffffff00;
+    color: #000000;
 
-    padding: 20px 50px;
+ 
+    width: 100%;
+    height: 70px;
     margin: 0;
 
     font-weight: bold;
-    border-radius: 50px;
 
     position: absolute;
-    bottom: 300px;
+    bottom: 275px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .elapsedTimeActive {
-    background-color: #013f8a;
-    background-image: -webkit-linear-gradient(135deg, #ffffff20 25%, transparent 25%, transparent 50%, #ffffff20 50%, #ffffff20 75%, transparent 75%, transparent);
-    background-image: linear-gradient(-45deg, #ffffff20 25%, transparent 25%, transparent 50%, #ffffff20 50%, #ffffff20 75%, transparent 75%, transparent);
-    background-size: 35px 35px;
-
-    animation: ProgressAnimation 2s linear infinite;
+    position: absolute;
 }
 
-@keyframes ProgressAnimation { 
-    0% {background-position:0 0}
-    100% {background-position:35px 35px}
+.elapsedTimeActive::after {
+    content: "";
+    height: 5px;
+    width: 100%;
+
+    position: absolute;
+    top: -5px;
+    left: 0;
+
+    background: linear-gradient(90deg, #013e89, #2c60d8, #61efff, #2c60d8, #013e89);
+    background-size: 600% 100%;
+    background-repeat: repeat;
+
+    animation: GradientAnimation 3s linear infinite;
+}
+
+@keyframes GradientAnimation {
+    0% {
+        background-position: 120% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
 }
 
 .settingsBtn {
@@ -288,6 +314,17 @@ nav.sticky .linksMenuBtn {
     position: absolute;
     bottom: 20px;
     left: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addHoursBtn img, .settingsBtn img {
+    width: 25px;
+    height: 25px;
+    filter: invert(1);
+    transform: rotate(45deg);
 }
 
 .settingsMenu, .addHoursMenu {
@@ -365,8 +402,6 @@ nav.sticky .linksMenuBtn {
 
     font-family: "Heebo", serif;
     background-color: #EFEFEF;
-
-    -webkit-appearance: none;
 }
 
 .addHoursMenu ul, .settingsMenu ul {
@@ -539,6 +574,4 @@ nav.sticky .linksMenuBtn {
 .linksMenuBtn img {
     width: 25px;
     height: 25px;
-
-    filter: invert(1);
 }
