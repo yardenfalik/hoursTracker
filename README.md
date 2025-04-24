@@ -1,9 +1,14 @@
-# HoursTracker  
+<div align="center">
+  <img width="300" height="300" src="/logoForReadme.png" alt="Logo">
+  <h1><b>HoursTracker</b></h1>
+  <p>
+     HoursTracker is a Progressive Web Application (PWA) designed to help you log and track your work hours and calculate your total revenue based on your hourly rate. With its intuitive design and powerful features, HoursTracker makes it simple to keep a clear record of your shifts and earnings, all accessible from any device.
+  </p>
+</div>
 
-**HoursTracker** is a Progressive Web Application (PWA) designed to help you log and track your work hours and calculate your total revenue based on your hourly rate. With its intuitive design and powerful features, HoursTracker makes it simple to keep a clear record of your shifts and earnings, all accessible from any device.  
+---
 
-## Features  
-
+## ✨ Features  
 - **Track Work Hours**: Log your shifts with start and end times.  
 - **Calculate Revenue**: Automatically calculate your total revenue based on your logged hours and hourly rate.  
 - **Export Data to CSV**: Download your shift and revenue data as a CSV file for record-keeping or further analysis.  
@@ -11,7 +16,7 @@
 - **Shift History**: View, edit, and manage your logged shifts and total earnings in one place.  
 - **Responsive Design**: Works perfectly across devices, whether on desktop or mobile.  
 
-## Getting Started  
+## 🚀 Getting Started  
 
 Using HoursTracker is quick and easy:  
 
@@ -26,7 +31,7 @@ Using HoursTracker is quick and easy:
 3. **Start Tracking**:  
    Launch the app from your home screen and begin logging your shifts.  
 
-## Usage  
+## 🛠️ Usage  
 
 1. **Log Your Shifts**:  
    - Enter the start and end times for your shift.  
@@ -44,16 +49,11 @@ Using HoursTracker is quick and easy:
    - Access a list of all logged shifts.  
    - Edit or delete entries to maintain accurate records.  
 
-## Contributing  
+## 🌱 Contributing  
 
 We welcome contributions to enhance HoursTracker!  
 - **Report Issues**: Submit bug reports or feature requests via the [GitHub Issues page](https://github.com/yardenfalik/hoursTracker/issues).  
 - **Pull Requests**: Fork the repository and submit pull requests for new features or improvements.  
 
-## License  
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.  
-
-## Acknowledgments  
-
-Thank you for using HoursTracker to manage your work hours and track your earnings! Your feedback helps make the app even better.  
+## ⚖️ License  
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
